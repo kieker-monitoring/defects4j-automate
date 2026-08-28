@@ -82,6 +82,8 @@ do
 				echo "Fix methods: $methods"
 			fi
 			
+			rm -rf $PROJECTFOLDER/.git
+			
 			timeout --foreground 30m bash -c "fixBug '$BUG' '$test' '$location' '$methods'" &> $runfolder/fixing_"$BUG".txt
 			RETURN_CODE_FIXING=$?
 		
