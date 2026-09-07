@@ -4,7 +4,7 @@ This repo examines how LLMs can fix defects4j bugs in two variants: Without any 
 
 ## Prerequisites
 - docker installed
-- `defects4j-repos-v3.zip` downloaded (might be downloaded during the process, but if multiple experiments should be started, that will significantly slow it down)
+- `defects4j-repos-v3.zip` downloaded, usually using `wget https://defects4j.org/downloads/defects4j-repos-v3.zip` (might be downloaded during the process, but if multiple experiments should be started, that will significantly slow it down)
 
 ## Basic
 
