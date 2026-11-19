@@ -14,34 +14,7 @@ if [ ! -d "${JAVA_HOME}" ]; then
 	exit 1
 fi
 
-if [ "$PROJECT" == "Lang" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.lang3.*;org.apache.commons.lang.*"
-fi
-if [ "$PROJECT" == "JacksonCore" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="com.fasterxml.jackson.core.*"
-fi
-if [ "$PROJECT" == "JacksonDatabind" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="com.fasterxml.jackson.databind.*"
-fi
-if [ "$PROJECT" == "Jsoup" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.jsoup.*"
-fi
-if [ "$PROJECT" == "Compress" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.compress.*"
-fi
-if [ "$PROJECT" == "Time" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.joda.time.*"
-fi
-if [ "$PROJECT" == "Cli" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.cli.*;org.apache.commons.cli2.*"
-fi
-if [ "$PROJECT" == "Collections" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.collections.*;org.apache.commons.collections4.*"
-fi
-if [ "$PROJECT" == "Math" ]; then
-	export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.math3.*;org.apache.commons.math.*"
-fi
-
+setKiekerSignatures "$PROJECT"
 
 
 export LANG=en_US.UTF-8

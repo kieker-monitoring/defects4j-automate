@@ -1,5 +1,38 @@
 #!/bin/bash
 
+setKiekerSignatures() {
+	local project=${1:-$PROJECT}
+	case "$project" in
+		Lang)
+			export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.lang3.*;org.apache.commons.lang.*"
+			;;
+		JacksonCore)
+			export KIEKER_SIGNATURES_INCLUDE="com.fasterxml.jackson.core.*"
+			;;
+		JacksonDatabind)
+			export KIEKER_SIGNATURES_INCLUDE="com.fasterxml.jackson.databind.*"
+			;;
+		Jsoup)
+			export KIEKER_SIGNATURES_INCLUDE="org.jsoup.*"
+			;;
+		Compress)
+			export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.compress.*"
+			;;
+		Time)
+			export KIEKER_SIGNATURES_INCLUDE="org.joda.time.*"
+			;;
+		Cli)
+			export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.cli.*;org.apache.commons.cli2.*"
+			;;
+		Collections)
+			export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.collections.*;org.apache.commons.collections4.*"
+			;;
+		Math)
+			export KIEKER_SIGNATURES_INCLUDE="org.apache.commons.math3.*;org.apache.commons.math.*"
+			;;
+	esac
+}
+
 get_bug_statistics() {
 	local file_path=$1
 	
