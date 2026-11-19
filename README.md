@@ -42,3 +42,12 @@ To analyze this, different variants exist:
 - To visualize the correlation between steps and tokens, please call `gnuplot -c plot.plt`.
 - Get correlation matrix per project: `for project in Cli Compress JacksonCore JacksonDatabind Jsoup Lang Time; do for mode in uninformed semi-informed informed; do echo $project"-"$mode; Rscript -e "d <- read.table('results-$project-$mode.csv', header=TRUE); options(width=200); print(cor(d[, -ncol(d)]))"; done; done`
 - Get correlations matrix per mode: `for mode in uninformed semi-informed informed; do echo $mode; cat results-*-"$mode".csv | grep -v "BugID" &> merged_$mode.csv; Rscript -e "d <- read.table('"merged_$mode.csv"', header=TRUE); options(width=200); print(cor(d[, -ncol(d)]))"; done;`
+
+## State Size Measurement
+
+To measure the size and overhead of naive state capturing (parameters, return values and `this`), the Kieker branch `state-capture` is required:
+- Build the agent: `cd ../kieker && git checkout state-capture && ./gradlew bytebuddyJar` (JDK 11)
+- Get `tracelength.txt` for the project (see above); it is used for selecting the bugs and their failing tests
+- Run the measurement, e.g., for 15 bugs of JacksonDatabind spread over the trace lengths: `./getStateSizes.sh JacksonDatabind`, or for specific bugs: `./getStateSizes.sh JacksonDatabind 5 17`
+
+For each bug, the failing test of the buggy version is executed uninstrumented, with Kieker (binary writer) and with state capturing for each depth in `STATE_DEPTHS` (default `0 1 full`). Results are appended to `statesizes.txt`; further options (timeout, data size limit, repetitions) are documented in the header of `getStateSizes.sh`.
