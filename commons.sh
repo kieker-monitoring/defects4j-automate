@@ -154,8 +154,9 @@ editSurefire() {
 	project=$1
 	project_folder=$2
 	bug_id=$3
-		
-	agent_path="-javaagent:"$(pwd)"/kieker-2.0.2-bytebuddy.jar"
+	
+	default_agent="-javaagent:$(pwd)/kieker-2.0.2-bytebuddy.jar"
+	agent_path="${4:-$default_agent}"
 	if [ "$project" == "Lang" ] && [ "$bug_id" == "47" ]; then
 		new_plugin="<plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><configuration><argLine>$agent_path</argLine></configuration></plugin>"
 		sed -i "/<plugins>/a $new_plugin" "$project_folder/pom.xml"

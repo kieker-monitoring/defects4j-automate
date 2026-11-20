@@ -236,7 +236,7 @@ do
 	fi
 
 	# Same argLine for all modes; modes only differ in environment variables
-	editSurefire $PROJECT $PROJECTFOLDER $bug_id "-javaagent:$STATE_AGENT_JAR -Dkieker.monitoring.configuration=$(pwd)/kieker-binary.properties -Xmx$TEST_XMX"
+	editSurefire $PROJECT $PROJECTFOLDER $bug_id "-javaagent:$STATE_AGENT_JAR" "-Dkieker.monitoring.configuration=$(pwd)/kieker-binary.properties -Xmx$TEST_XMX"
 	(cd $PROJECTFOLDER && mvn clean test-compile) &> $runfolder/compile_"$bug_id".txt
 	# Warm-up (not measured), e.g., for resolving the surefire plugin
 	(unset KIEKER_SIGNATURES_INCLUDE KIEKER_STATE_DEPTH; cd $PROJECTFOLDER && mvn test -Dtest=$test) &> $runfolder/warmup_"$bug_id".txt
